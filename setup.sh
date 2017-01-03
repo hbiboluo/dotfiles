@@ -181,6 +181,8 @@ if [[ -f ~/.spacemacs ]]; then
     fi
 fi
 
+# pyenv
+[[ ! -d ~/.pyenv ]] && print_info "install pyenv..." && git clone https://github.com/yyuu/pyenv.git ~/.pyenv
 
 main
 
