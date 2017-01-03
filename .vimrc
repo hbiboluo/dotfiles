@@ -109,3 +109,5 @@ set smartcase       " ...unless we type a capital
 
 " session autosave
 :let g:session_autosave = 'no'
+" hide yank history 
+:let g:yankring_history_dir = '~/.vim/'
