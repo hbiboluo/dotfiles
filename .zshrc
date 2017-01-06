@@ -49,7 +49,7 @@ fi
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aliases bower common-aliases copyfile django docker encode64 fabric git git-extras git-flow github gitignore jump npm pip python pyenv rsync sudo urltools virtualenv tmux tmuxinator zsh_reload)
+plugins=(aliases bower celery common-aliases copyfile django docker encode64 fabric git git-extras git-flow github gitignore jump npm pip python pyenv rsync sudo urltools virtualenv tmux tmuxinator zsh_reload)
 if [[ `uname -s` == 'Darwin' ]]; then
     plugins+=(brew brewcask osx)
 else
