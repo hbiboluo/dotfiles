@@ -1,0 +1,9 @@
+os:centos:gcc gtk2 gtk2-devel libXpm libXpm-devel libtiff libtiff-devel libjpeg-turbo libjpeg-turbo-devel giflib giflib-devel
+os:centos:zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel xz xz-devel libcurl-devel
+os:ubuntu:make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libcurl4-gnutls-dev
+os:osx:readline xz
+
+git tmux vim zsh ack tig mosh cloc htop the_silver_searcher axel curl ncdu
+os:centos:java-1.8.0-openjdk ShellCheck 
+os:osx:shellcheck 
+os:ubuntu:shellcheck
