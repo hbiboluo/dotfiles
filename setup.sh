@@ -53,6 +53,8 @@ get_os() {
         os="osx"
     elif [ "$OS_NAME" == "Linux" ] && [ -e "/etc/lsb-release" ]; then
         os="ubuntu"
+    elif [ "$OS_NAME" == "Linux" ] && [ -e "/etc/redhat-release" ]; then
+        os="redhat"
     fi
 
     printf "%s" "$os"
@@ -184,5 +186,6 @@ fi
 # pyenv
 [[ ! -d ~/.pyenv ]] && print_info "install pyenv..." && git clone https://github.com/yyuu/pyenv.git ~/.pyenv
 
+[[ ! -d ~/.tmux/plugins ]] && mkdir -p ~/.tmux/plugins && git clone https://github.com/tmux-plugins/tmux-resurrect.git ~/.tmux/plugins/tmux-resurrect
 main
 
