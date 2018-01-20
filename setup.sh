@@ -53,6 +53,8 @@ get_os() {
         os="osx"
     elif [ "$OS_NAME" == "Linux" ] && [ -e "/etc/lsb-release" ]; then
         os="ubuntu"
+    elif [ "$OS_NAME" == "Linux" ] && [ -e "/etc/redhat-release" ]; then
+        os="redhat"
     fi
 
     printf "%s" "$os"
@@ -133,6 +135,7 @@ link_file(){
 # finds all .dotfiles in this folder
 declare -a FILES_TO_SYMLINK=$(find . -type f -maxdepth 1 -name ".*" -not -name .DS_Store -not -name .git -not -name .gitignore | sed -e 's|//|/|' | sed -e 's|./.|.|')
 FILES_TO_SYMLINK="$FILES_TO_SYMLINK .zsh-custom .pip .spacemacs.d .hscript" # add in vim and the binaries
+declare -a FILES_TO_SYMLINK_BIN=$(find ./bin -type f -not -name .DS_Store -not -name .git -not -name .gitignore | sed -e 's/.\/bin\///')
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 main() {
@@ -143,6 +146,11 @@ main() {
         sourceFile="$(pwd)/$i"
         targetFile="$HOME/$(printf "%s" "$i" | sed "s/.*\/\(.*\)/\1/g")"
         link_file "$sourceFile" "$targetFile"
+    done
+    for i in ${FILES_TO_SYMLINK_BIN[@]}; do
+        sourceFile="$(pwd)/bin/$i"
+        targetFile="/usr/local/bin/$(printf "%s" "$i" | sed "s/.*\/\(.*\)/\1/g")"
+        execute "sudo ln -sf $sourceFile $targetFile" "$targetFile → $sourceFile"
     done
 }
 
@@ -183,6 +191,13 @@ fi
 
 # pyenv
 [[ ! -d ~/.pyenv ]] && print_info "install pyenv..." && git clone https://github.com/yyuu/pyenv.git ~/.pyenv
+
+# tmux配置
+if [[ ! -d ~/.tmux/plugins ]]; then 
+  mkdir -p ~/.tmux/plugins 
+  git clone https://github.com/tmux-plugins/tmux-resurrect.git ~/.tmux/plugins/tmux-resurrect 
+  git clone https://github.com/tmux-plugins/tmux-continuum.git ~/.tmux/plugins/tmux-continuum
+fi
 
 main
 

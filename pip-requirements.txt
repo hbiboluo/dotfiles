@@ -1,0 +1,13 @@
+virtualenv
+requests
+pyquery
+numpy
+pandas
+scikit-learn
+matplotlib
+
+thefuck
+pyspider
+jupyter
+mycli
+git+https://github.com/jeffkaufman/icdiff.git

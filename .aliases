@@ -1,4 +1,12 @@
-alias emacs="emacs -nw"
-alias e=emacs
+# oh-my-zsh插件
 alias m=mark
 alias j=jump
+
+# 使用fzf快速选择文件并使用vim打开
+alias vfzf='vim $(fzf)'
+alias cfzf='cat $(fzf)'
+
+# emacs常用
+alias v=vim
+alias emacs="emacs -nw"
+alias e=emacs
