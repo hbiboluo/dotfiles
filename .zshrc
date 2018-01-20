@@ -5,7 +5,13 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="amuse"
+if [[ `uname -s` == 'Darwin' ]]; then
+  ZSH_THEME="amuse"
+else
+  ZSH_THEME="gnzh"
+fi
+# ZSH_THEME="gnzh" # 远程首选，带hostname
+# ZSH_THEME="crunch"
 # ZSH_THEME="ys"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -52,8 +58,10 @@ fi
 plugins=(aliases bower celery common-aliases copyfile django docker encode64 fabric git git-extras git-flow github gitignore jump npm pip python pyenv rsync sudo urltools virtualenv tmux tmuxinator zsh_reload)
 if [[ `uname -s` == 'Darwin' ]]; then
     plugins+=(brew brewcask osx)
-else
+elif [[ `uname -s` == 'Linux' && -e "/etc/lsb-release" ]]; then
     plugins+=(ubuntu)
+elif [[ `uname -s` == 'Linux' && -e "/etc/redhat-release" ]]; then
+    plugins+=(yum)
 fi
 
 
