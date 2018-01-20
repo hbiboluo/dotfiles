@@ -11,3 +11,4 @@ pyspider
 jupyter
 mycli
 git+https://github.com/jeffkaufman/icdiff.git
+tldr
