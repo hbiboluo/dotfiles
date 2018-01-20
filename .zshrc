@@ -111,5 +111,4 @@ else
     touch ~/.zshrc_local
 fi
 
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

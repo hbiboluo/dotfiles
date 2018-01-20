@@ -3,7 +3,8 @@ alias m=mark
 alias j=jump
 
 # 使用fzf快速选择文件并使用vim打开
-alias vfzf='vim $(ag --hidden --ignore .git -l -g "" | fzf)'
+alias vfzf='vim $(fzf)'
+alias cfzf='cat $(fzf)'
 
 # emacs常用
 alias emacs="emacs -nw"

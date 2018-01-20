@@ -11,4 +11,5 @@ fi
 # Key bindings
 # ------------
 source "/opt/fzf/shell/key-bindings.bash"
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'
 
