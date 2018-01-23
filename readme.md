@@ -16,3 +16,8 @@ zsh、git、spacemacs、vim、pip以及一些scripts。
 # TODO
 - OSX - brew、ubuntu - apt
 
+# 注意：
+## jupyterlab
+```shell
+jupyter serverextension enable --py jupyterlab --sys-prefix
+```
