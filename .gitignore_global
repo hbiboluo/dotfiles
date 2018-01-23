@@ -27,6 +27,7 @@ __pycache__/
 nosetests.xml
 coverage.xml
 *,cover
+.ipynb_checkpoints
 
 ### Node ###
 node_modules
