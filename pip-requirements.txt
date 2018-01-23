@@ -6,6 +6,7 @@ pandas
 scikit-learn
 matplotlib
 tensorflow
+missingno
 
 thefuck
 pyspider
