@@ -22,16 +22,18 @@ F() {
   test -n "$TF_CMD" && print -s $TF_CMD
 }
 
+## 本机配置
+# 约定：使用_local格式为名的只在本机所有，不添加到git库中
+[[ ! -e ~/.rc-local ]] && touch ~/.rc-local
+[[ -f ~/.rc-local ]] && source ~/.rc-local
+
 ## 扩展
-# load my scipts
-[[ -d ~/.hscript ]] && source ~/.hscript/*.sh
 # load aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
-## 本机配置
-# 约定：使用_local格式为名的只在本机所有，不添加到git库中
-if [[ -f ~/.rc_local ]]; then
-  source ~/.rc_local
-else
-  touch ~/.rc_local
-fi
+[[ ! -e ~/.aliases-local ]] && touch ~/.aliases-local
+[[ -f ~/.aliases ]] && source ~/.aliases-local
+
+# load my scipts
+[[ -d ~/.hscript ]] && source ~/.hscript/*.sh
+

@@ -6,6 +6,97 @@
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
 values."
+  (setq hbiboluo-layouts '(
+                           ;; -- Core
+                           ;; Emacs incremental completion and selection narrowing framework
+                           helm
+                           ;; auto-completion
+                           ;; engines: company, auto-complete
+                           ;; snippet: yasnippet & auto-yasnippet
+                           ;;
+                           ;; 使用jk作为自动触发complete
+                           ;; ~/.spacemacs.d/snippets
+                           ;; 通过company-statistics 自动重排顺序
+                           (auto-completion :variables
+                                            auto-completion-return-key-behavior 'complete
+                                            auto-completion-tab-key-behavior 'cycle
+                                            auto-completion-complete-with-key-sequence '"jk"
+                                            auto-completion-enable-snippets-in-popup t
+                                            auto-completion-enable-help-tooltip t
+                                            auto-completion-enable-sort-by-usage t)
+                           ;; 特别不建议删除
+                           emacs-lisp
+
+                           ;; -- Toolkits
+                           ;; Git
+                           git
+                           ;; Github: pull requests & hub cmd & gists
+                           ;; 预先生成 personal access token -> ~/.gitconfig
+                           ;; gist主要通过 SPC g g 进入
+                           github
+                           ;; Org-mode
+                           (org :variables
+                                org-enable-github-support t ;; 支持导出github格式的markdown
+                                org-enable-reveal-js-support t ;; 导出reveal.js演示
+                                org-enable-org-journal-support t ;; 在一个目录里管理每个日记 org-journal-dir: ~/Documents/journal/
+                                )
+                           ;; Shell工具:
+                           ;; SPC ' 快速打开； SPC p ' 在当前项目的根目录打开
+                           (shell :variables
+                                  shell-default-height 30
+                                  shell-default-position 'bottom)
+   ))
+  ;; development
+  (setq hbiboluo-layouts (append hbiboluo-layouts '(
+                                                    ;; 语法检查 - Flycheck
+                                                    ;; 主要绑定在 SPCC e里边
+                                                    syntax-checking
+                                                    ;; Python
+                                                    (python :variables
+                                                             python-fill-column 99
+                                                             python-sort-imports-on-save t
+                                                             python-enable-yapf-format-on-save t)
+                                                    ;; HTML & CSS
+                                                    ;; - emmet-mode
+                                                    ;; - evil-matchit：使用%进行tag导航
+                                                    ;; - impatient mode：在Browser中打开 SPC m i
+                                                    html
+                                                    ;; js & coffee
+                                                    ;; - 使用tern(npm)作为auto-completion
+                                                    ;; - web-beautify
+                                                    javascript
+                                                    ;; Django: jump file & server & south
+                                                    django
+                                                    ;; 支持.sh & .fish
+                                                    shell-scripts
+                                                    )))
+  ;; other lang & file format
+  (setq hbiboluo-layouts (append hbiboluo-layouts '(
+                                                    ;; sql
+                                                    sql
+                                                    common-lisp
+                                                    ;; vimscript脚本语法高亮
+                                                    vimscript
+                                                    yaml
+                                                    csv
+                                                    ;; markdown
+                                                    ;; - 使用vmd作为preview
+                                                    ;; - 生成目录：~SPC SPC markdown-toc-generate-toc RET~
+                                                    (markdown :variables
+                                                               markdown-live-preview-engine 'vmd)
+                                                    )))
+  ;; osx
+  (if (eq system-type 'darwin)
+      (setq hbiboluo-layouts (append hbiboluo-layouts '(
+                                                        ;; osx
+                                                        ;; - ~⌘~ is set to ~hyper~ and ~⌥~ is set to ~meta~
+                                                        osx
+                                                        ;; dash
+                                                        ;; - | ~SPC d d~   | Lookup thing at point in Dash or Zeal                           |
+                                                        (dash :variables
+                                                               helm-dash-docset-newpath "~/Library/Application Support/Dash/DocSets")
+                                                        )))
+    )
   (setq-default
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
@@ -29,60 +120,19 @@ values."
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
-   dotspacemacs-configuration-layers
-   '(
-     vimscript
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
-     helm
-     (auto-completion :variables
-                      auto-completion-enable-snippets-in-popup t
-                      auto-completion-enable-help-tooltip t)
-     ;; toolkits
-     git
-     github
-     (org :variables
-          org-enable-github-support t
-          org-enable-reveal-js-support t)
-     osx
-     ;; lang
-     emacs-lisp
-     common-lisp
-     javascript
-     html
-     (python :variables
-             python-fill-column 99
-             python-sort-imports-on-save t
-             python-enable-yapf-format-on-save t)
-     ruby
-     shell-scripts
-     sql
-     ;; development
-     django
-     ansible
-     (dash :variables
-           helm-dash-docset-newpath "~/Library/Application Support/Dash/DocSets" )
-     shell
-     ;; file format
-     yaml
-     csv
-     markdown
-
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; spell-checking
-     ;; syntax-checking
-     ;; version-control
-     )
+   dotspacemacs-configuration-layers hbiboluo-layouts
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(python
+                                      python
+                                      python
+                                      python
+                                      html
+                                      python
+                                      python
+                                      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -344,6 +394,10 @@ you should place your code here."
 
 
   ;; GTD
+  ;; enable model line display of org clock
+  (setq spaceline-org-clock-p t)
+  ;; (setq org-journal-dir "~/org/journal/")
+  ;; TODO词
   (setq org-todo-keywords
         (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
                 (sequence "WAITING(w@/!)" "OPTIONAL(o)" "|" "CANCELLED(c@/!)"))))

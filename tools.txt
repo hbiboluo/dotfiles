@@ -5,5 +5,5 @@ os:osx:readline xz
 
 git tmux vim zsh ack tig mosh cloc htop the_silver_searcher axel curl ncdu
 os:centos:java-1.8.0-openjdk ShellCheck 
-os:osx:shellcheck 
+os:osx:shellcheck ffmpeg
 os:ubuntu:shellcheck
