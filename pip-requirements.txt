@@ -9,6 +9,7 @@ tensorflow
 missingno
 scipy
 seaborn
+openpyxl
 
 thefuck
 pyspider
