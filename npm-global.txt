@@ -1,0 +1,6 @@
+tern
+pm2
+js-beautify
+jslint
+eslint
+vmd
