@@ -6,97 +6,104 @@
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
 values."
-  (setq hbiboluo-layouts '(
-                           ;; -- Core
-                           ;; Emacs incremental completion and selection narrowing framework
-                           helm
-                           ;; auto-completion
-                           ;; engines: company, auto-complete
-                           ;; snippet: yasnippet & auto-yasnippet
-                           ;;
-                           ;; 使用jk作为自动触发complete
-                           ;; ~/.spacemacs.d/snippets
-                           ;; 通过company-statistics 自动重排顺序
-                           (auto-completion :variables
-                                            auto-completion-return-key-behavior 'complete
-                                            auto-completion-tab-key-behavior 'cycle
-                                            auto-completion-complete-with-key-sequence '"jk"
-                                            auto-completion-enable-snippets-in-popup t
-                                            auto-completion-enable-help-tooltip t
-                                            auto-completion-enable-sort-by-usage t)
-                           ;; 特别不建议删除
-                           emacs-lisp
+  (setq hbiboluo-layouts
+        '(
+          ;; -- Core
+          ;; Emacs incremental completion and selection narrowing framework
+          helm
+          ;; auto-completion
+          ;; engines: company, auto-complete
+          ;; snippet: yasnippet & auto-yasnippet
+          ;;
+          ;; 使用jk作为自动触发complete
+          ;; ~/.spacemacs.d/snippets
+          ;; 通过company-statistics 自动重排顺序
+          (auto-completion :variables
+                          auto-completion-return-key-behavior 'complete
+                          auto-completion-tab-key-behavior 'cycle
+                          auto-completion-complete-with-key-sequence '"jk"
+                          auto-completion-enable-snippets-in-popup t
+                          auto-completion-enable-help-tooltip t
+                          auto-completion-enable-sort-by-usage t)
+          ;; 特别不建议删除
+          emacs-lisp
 
-                           ;; -- Toolkits
-                           ;; Git
-                           git
-                           ;; Github: pull requests & hub cmd & gists
-                           ;; 预先生成 personal access token -> ~/.gitconfig
-                           ;; gist主要通过 SPC g g 进入
-                           github
-                           ;; Org-mode
-                           (org :variables
-                                org-enable-github-support t ;; 支持导出github格式的markdown
-                                org-enable-reveal-js-support t ;; 导出reveal.js演示
-                                org-enable-org-journal-support t ;; 在一个目录里管理每个日记 org-journal-dir: ~/Documents/journal/
-                                )
-                           ;; Shell工具:
-                           ;; SPC ' 快速打开； SPC p ' 在当前项目的根目录打开
-                           (shell :variables
-                                  shell-default-height 30
-                                  shell-default-position 'bottom)
-   ))
+          ;; -- Toolkits
+          ;; Git
+          git
+          ;; Github: pull requests & hub cmd & gists
+          ;; 预先生成 personal access token -> ~/.gitconfig
+          ;; gist主要通过 SPC g g 进入
+          github
+          ;; Org-mode
+          (org :variables
+              org-enable-github-support t ;; 支持导出github格式的markdown
+              org-enable-reveal-js-support t ;; 导出reveal.js演示
+              org-enable-org-journal-support t ;; 在一个目录里管理每个日记 org-journal-dir: ~/Documents/journal/
+              )
+          ;; Shell工具:
+          ;; SPC ' 快速打开； SPC p ' 在当前项目的根目录打开
+          (shell :variables
+                shell-default-height 30
+                shell-default-position 'bottom)
+          ))
   ;; development
-  (setq hbiboluo-layouts (append hbiboluo-layouts '(
-                                                    ;; 语法检查 - Flycheck
-                                                    ;; 主要绑定在 SPCC e里边
-                                                    syntax-checking
-                                                    ;; Python
-                                                    (python :variables
-                                                             python-fill-column 99
-                                                             python-sort-imports-on-save t
-                                                             python-enable-yapf-format-on-save t)
-                                                    ;; HTML & CSS
-                                                    ;; - emmet-mode
-                                                    ;; - evil-matchit：使用%进行tag导航
-                                                    ;; - impatient mode：在Browser中打开 SPC m i
-                                                    html
-                                                    ;; js & coffee
-                                                    ;; - 使用tern(npm)作为auto-completion
-                                                    ;; - web-beautify
-                                                    javascript
-                                                    ;; Django: jump file & server & south
-                                                    django
-                                                    ;; 支持.sh & .fish
-                                                    shell-scripts
-                                                    )))
+  (setq hbiboluo-layouts
+        (append hbiboluo-layouts
+                '(
+                  ;; 语法检查 - Flycheck
+                  ;; 主要绑定在 SPCC e里边
+                  syntax-checking
+                  ;; Python
+                  (python :variables
+                          python-fill-column 99
+                          python-sort-imports-on-save t
+                          python-enable-yapf-format-on-save t)
+                  ;; HTML & CSS
+                  ;; - emmet-mode
+                  ;; - evil-matchit：使用%进行tag导航
+                  ;; - impatient mode：在Browser中打开 SPC m i
+                  html
+                  ;; js & coffee
+                  ;; - 使用tern(npm)作为auto-completion
+                  ;; - web-beautify
+                  javascript
+                  ;; Django: jump file & server & south
+                  django
+                  ;; 支持.sh & .fish
+                  shell-scripts)
+                ))
   ;; other lang & file format
-  (setq hbiboluo-layouts (append hbiboluo-layouts '(
-                                                    ;; sql
-                                                    sql
-                                                    common-lisp
-                                                    ;; vimscript脚本语法高亮
-                                                    vimscript
-                                                    yaml
-                                                    csv
-                                                    ;; markdown
-                                                    ;; - 使用vmd作为preview
-                                                    ;; - 生成目录：~SPC SPC markdown-toc-generate-toc RET~
-                                                    (markdown :variables
-                                                               markdown-live-preview-engine 'vmd)
-                                                    )))
+  (setq hbiboluo-layouts
+        (append hbiboluo-layouts
+                '(
+                  ;; sql
+                  sql
+                  common-lisp
+                  ;; vimscript脚本语法高亮
+                  vimscript
+                  yaml
+                  csv
+                  ;; markdown
+                  ;; - 使用vmd作为preview
+                  ;; - 生成目录：~SPC SPC markdown-toc-generate-toc RET~
+                  (markdown :variables
+                            markdown-live-preview-engine 'vmd))
+                ))
   ;; osx
   (if (eq system-type 'darwin)
-      (setq hbiboluo-layouts (append hbiboluo-layouts '(
-                                                        ;; osx
-                                                        ;; - ~⌘~ is set to ~hyper~ and ~⌥~ is set to ~meta~
-                                                        osx
-                                                        ;; dash
-                                                        ;; - | ~SPC d d~   | Lookup thing at point in Dash or Zeal                           |
-                                                        (dash :variables
-                                                               helm-dash-docset-newpath "~/Library/Application Support/Dash/DocSets")
-                                                        )))
-    )
+      (setq hbiboluo-layouts
+            (append hbiboluo-layouts
+                    '(
+                      ;; osx
+                      ;; - ~⌘~ is set to ~hyper~ and ~⌥~ is set to ~meta~
+                      osx
+                      ;; dash
+                      ;; - | ~SPC d d~   | Lookup thing at point in Dash or Zeal                           |
+                      (dash :variables
+                              helm-dash-docset-newpath "~/Library/Application Support/Dash/DocSets")
+                      )
+                    )))
   (setq-default
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
@@ -407,10 +414,14 @@ you should place your code here."
           "~/Repo/hbiboluo-text/gtd/"))
   (dolist (hbiboluo-org-folder hbiboluo-org-folders)
     (if (f-exists? hbiboluo-org-folder)
-        (setq hbiboluo-org-files (cons hbiboluo-org-files (find-lisp-find-files hbiboluo-org-folder "\.org$")))))
+        (setq hbiboluo-org-files
+              (cons hbiboluo-org-files
+                    (find-lisp-find-files hbiboluo-org-folder "\.org$")
+                    ))))
   (setq hbiboluo-org-files (remove nil hbiboluo-org-files))
-  (add-hook 'org-agenda-mode-hook (lambda () 
-                                    (setq org-agenda-files hbiboluo-files)))
+  (add-hook 'org-agenda-mode-hook
+            (lambda ()
+              (setq org-agenda-files hbiboluo-files)))
 
   ;; set web indent
   (setq-default
