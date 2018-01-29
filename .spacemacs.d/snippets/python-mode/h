@@ -1,0 +1,9 @@
+# name : python file header
+# key : h
+# --
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+#
+# file: `(buffer-name)`
+# author: huangbin1@360.cn
+# date: `(format-time-string "%Y/%m/%d")`
