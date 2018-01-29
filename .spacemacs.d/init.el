@@ -125,14 +125,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(python
-                                      python
-                                      python
-                                      python
-                                      html
-                                      python
-                                      python
-                                      )
+   dotspacemacs-additional-packages '()
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -188,7 +181,7 @@ values."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'random
+   dotspacemacs-startup-banner 'official
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
    ;; Possible values for list-type are:
@@ -262,7 +255,7 @@ values."
    dotspacemacs-display-default-layout nil
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts nil
+   dotspacemacs-auto-resume-layouts t
    ;; Size (in MB) above which spacemacs will prompt to open the large file
    ;; literally to avoid performance issues. Opening a file literally means that
    ;; no major mode or minor modes are active. (default is 1)
@@ -292,7 +285,7 @@ values."
    dotspacemacs-enable-paste-transient-state nil
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
-   dotspacemacs-which-key-delay 0.4
+   dotspacemacs-which-key-delay 0.1
    ;; Which-key frame position. Possible values are `right', `bottom' and
    ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
    ;; right; if there is insufficient space it displays it at the bottom.
@@ -392,7 +385,6 @@ you should place your code here."
   ;; auto-complete
   (global-company-mode)
 
-
   ;; GTD
   ;; enable model line display of org clock
   (setq spaceline-org-clock-p t)
@@ -400,30 +392,40 @@ you should place your code here."
   ;; TODO词
   (setq org-todo-keywords
         (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-                (sequence "WAITING(w@/!)" "OPTIONAL(o)" "|" "CANCELLED(c@/!)"))))
-
+                (sequence "WAITING(w@/!)" "|" "CANCELLED(c@/!)"))))
   (setq org-todo-keyword-faces
         (quote (("TODO" :foreground "red" :weight bold)
                 ("NEXT" :foreground "blue" :weight bold)
                 ("DONE" :foreground "forest green" :weight bold)
                 ("WAITING" :foreground "orange" :weight bold)
-                ("OPTIONAL" :foreground "yellow" :weight bold)
                 ("CANCELLED" :foreground "forest green" :weight bold))))
+  ;; Smart detect orgfiles from multiple folders exists
+  (load-library "find-lisp")
+  (setq hbiboluo-org-files nil)
+  (setq hbiboluo-org-folders
+        '("~/Repo/hbiboluo/orgs/"
+          "~/Repo/hbiboluo-text/gtd/"))
+  (dolist (hbiboluo-org-folder hbiboluo-org-folders)
+    (if (f-exists? hbiboluo-org-folder)
+        (setq hbiboluo-org-files (cons hbiboluo-org-files (find-lisp-find-files hbiboluo-org-folder "\.org$")))))
+  (setq hbiboluo-org-files (remove nil hbiboluo-org-files))
+  (add-hook 'org-agenda-mode-hook (lambda () 
+                                    (setq org-agenda-files hbiboluo-files)))
 
-  ;; set js indent
+  ;; set web indent
   (setq-default
-  ;; coffee
-  coffee-tab-width 2
-  ;; js mode
-  javascript-indent-level 2
-  js2-basic-offset 2
-  js-indent-level 2
-  ;; web-mode
-  css-indent-offset 2
-  web-mode-code-indent-offset 2
-  web-mode-attr-indent-offset 2
-  web-mode-css-indent-offset 2
-  web-mode-markup-indent-offset 2)
+   ;; coffee
+   coffee-tab-width 2
+   ;; js mode
+   javascript-indent-level 2
+   js2-basic-offset 2
+   js-indent-level 2
+   ;; web-mode
+   css-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-attr-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-markup-indent-offset 2)
 
   ;; faces for auto-complete
   (custom-set-faces
@@ -431,11 +433,6 @@ you should place your code here."
      ((t (:inherit company-tooltip :weight bold :underline nil))))
    '(company-tooltip-common-selection
      ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
-
-  ;; (add-to-list 'git-link-remote-alist
-  ;;             '("git.tobeornot.cn" git-link-github))
-  ;; (add-to-list 'git-link-commit-remote-alist
-  ;;             '("git.tobeornot.cn" git-link-commit-github))
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
