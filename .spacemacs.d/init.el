@@ -21,8 +21,11 @@ values."
           (auto-completion :variables
                           auto-completion-return-key-behavior 'complete
                           auto-completion-tab-key-behavior 'cycle
-                          auto-completion-complete-with-key-sequence '"jk"
-                          auto-completion-enable-snippets-in-popup t
+                          auto-completion-complete-with-key-sequence nil
+                          auto-completion-complete-with-key-sequence-delay 0.1
+                          auto-completion-private-snippets-directory nil
+                          ;; auto-completion-complete-with-key-sequence '"jk"
+                          auto-completion-enable-snippets-in-popup t ;; popup
                           auto-completion-enable-help-tooltip t
                           auto-completion-enable-sort-by-usage t)
           ;; 特别不建议删除
@@ -389,8 +392,6 @@ you should place your code here."
   ;; 80 char column
   (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
   (global-fci-mode 1)
-  ;; auto-complete
-  (global-company-mode)
 
   ;; GTD
   ;; enable model line display of org clock
@@ -438,13 +439,27 @@ you should place your code here."
    web-mode-css-indent-offset 2
    web-mode-markup-indent-offset 2)
 
-  ;; faces for auto-complete
+  ;; auto-complete
+  (global-company-mode)
+  )
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(company-minimum-prefix-length 1)
+   '(company-tooltip-idle-delay 0.1))
   (custom-set-faces
-   '(company-tooltip-common
-     ((t (:inherit company-tooltip :weight bold :underline nil))))
-   '(company-tooltip-common-selection
-     ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+   '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
   )
 
-(setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
-(load custom-file 'no-error 'no-message)
