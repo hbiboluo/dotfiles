@@ -27,4 +27,5 @@ autoflake
 gprof2dot
 
 pyspark
+pydoop
 
