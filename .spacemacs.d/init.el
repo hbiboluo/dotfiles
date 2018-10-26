@@ -265,7 +265,7 @@ values."
    dotspacemacs-display-default-layout nil
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts t
+   dotspacemacs-auto-resume-layouts nil
    ;; Size (in MB) above which spacemacs will prompt to open the large file
    ;; literally to avoid performance issues. Opening a file literally means that
    ;; no major mode or minor modes are active. (default is 1)
@@ -429,9 +429,9 @@ you should place your code here."
    ;; coffee
    coffee-tab-width 2
    ;; js mode
-   javascript-indent-level 2
-   js2-basic-offset 2
-   js-indent-level 2
+   javascript-indent-level 4
+   js2-basic-offset 4
+   js-indent-level 4
    ;; web-mode
    css-indent-offset 2
    web-mode-code-indent-offset 2
@@ -441,6 +441,8 @@ you should place your code here."
 
   ;; auto-complete
   (global-company-mode)
+  ;; flake8
+  (setq flycheck-flake8-maximum-line-length 99)
   )
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.

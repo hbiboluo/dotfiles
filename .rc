@@ -7,9 +7,11 @@ export LANG=en_US.UTF-8
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:/usr/local/bin:$PATH"
 eval "$(pyenv init -)"
+
 # fzf 配置
 [[ -f ~/.fzf.zsh ]] && [[ $SHELL =~ ".*zsh" ]] && source ~/.fzf.zsh
 [[ -f ~/.fzf.bash ]] && [[ $SHELL =~ ".*bash" ]] && source ~/.fzf.bash
+
 # thefuck 配置
 F() {
   TF_PYTHONIOENCODING=$PYTHONIOENCODING;
@@ -34,6 +36,10 @@ F() {
 [[ ! -e ~/.aliases-local ]] && touch ~/.aliases-local
 [[ -f ~/.aliases ]] && source ~/.aliases-local
 
+
 # load my scipts
 [[ -d ~/.hscript ]] && source ~/.hscript/*.sh
 
+# setup hfiles env
+[[ -d /opt/hfiles/bin/bin ]] && export PATH="$PATH:/opt/hfiles/bin/bin"
+[[ -d /opt/hfiles/bin/env ]] && source /opt/hfiles/bin/env/*.sh

@@ -24,4 +24,8 @@ json-rpc
 service_factory
 flake8
 autoflake
+gprof2dot
+
+pyspark
+pydoop
 
