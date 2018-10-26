@@ -28,7 +28,7 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 # 备选主题：(crunch ys)
 if [[ `uname -s` == 'Darwin' ]]; then
   antigen bundle brew
-  antigen bundle osx
+  #antigen bundle osx
   antigen theme amuse
 elif [[ `uname -s` == 'Linux' ]]; then
   antigen theme gnzh
