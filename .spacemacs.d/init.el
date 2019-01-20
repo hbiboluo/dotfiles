@@ -410,9 +410,7 @@ you should place your code here."
   ;; Smart detect orgfiles from multiple folders exists
   (load-library "find-lisp")
   (setq hbiboluo-org-files nil)
-  (setq hbiboluo-org-folders
-        '("~/Repo/hbiboluo/orgs/"
-          "~/Repo/hbiboluo-text/gtd/"))
+  (setq hbiboluo-org-folders '("/opt/km/"))
   (dolist (hbiboluo-org-folder hbiboluo-org-folders)
     (if (f-exists? hbiboluo-org-folder)
         (setq hbiboluo-org-files
@@ -422,7 +420,7 @@ you should place your code here."
   (setq hbiboluo-org-files (remove nil hbiboluo-org-files))
   (add-hook 'org-agenda-mode-hook
             (lambda ()
-              (setq org-agenda-files hbiboluo-files)))
+              (setq org-agenda-files hbiboluo-org-files)))
 
   ;; set web indent
   (setq-default
