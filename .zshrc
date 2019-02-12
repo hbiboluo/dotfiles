@@ -20,6 +20,7 @@ antigen bundle npm
 antigen bundle pip 
 antigen bundle pyenv 
 antigen bundle zsh_reload
+antigen bundle mvn
 
 # Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting
