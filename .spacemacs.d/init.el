@@ -219,11 +219,21 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '(("Source Code Pro"  ;; 推荐字体
                                :size 18
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
+                               ("Monaco"  ;; OSX兜底字体
+                               :size 18
+                               :weight normal
+                               :width normal
+                               :powerline-scale 1.5)
+                               ("Ubuntu Mono"  ;; Linux兜底字体
+                               :size 14
+                               :weight normal
+                               :width normal
+                               :powerline-scale 1.5))
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
