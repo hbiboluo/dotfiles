@@ -50,3 +50,4 @@ fi
 if [[ -f ~/.rc ]]; then
   source ~/.rc
 fi
+h.welcome

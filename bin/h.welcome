@@ -1,14 +1,16 @@
 #!/bin/bash
 info=$(cat <<EOF
-user: `whoami`
-host: `hostname`
+User: `whoami`
+Host: `hostname`
 
-cpu: `system_profiler SPHardwareDataType | awk -F: '/Processor Name/{print $2}'`,`system_profiler SPHardwareDataType | awk -F: '/Processor Speed/{print $2}'` *`system_profiler SPHardwareDataType | awk -F: '/Number of Cores/{print $2}'`
-memory: `system_profiler SPHardwareDataType | awk -F: '/Memory/{print $2}'`
-ip: `ifconfig en0 | grep netmask | awk '{print $2}'`
+CPU: `system_profiler SPHardwareDataType | awk -F: '/Processor Name/{print $2}'`,`system_profiler SPHardwareDataType | awk -F: '/Processor Speed/{print $2}'` *`system_profiler SPHardwareDataType | awk -F: '/Number of Cores/{print $2}'`
+MEM: `system_profiler SPHardwareDataType | awk -F: '/Memory/{print $2}'`
+IP: `ifconfig en0 | grep netmask | awk '{print $2}'`
 
-time: `date +"%Y-%m-%d %H:%M:%S"`
-uptime: `uptime | sed -E 's/^[^,]*up *//; s/, *[[:digit:]]* users.*//; s/min/minutes/; s/([[:digit:]]+):0?([[:digit:]]+)/\1 hours, \2 minutes/'`
+Time: `date +"%Y-%m-%d %H:%M:%S"`
+Running: `uptime | sed -E 's/^[^,]*up *//; s/, *[[:digit:]]* users.*//; s/min/minutes/; s/([[:digit:]]+):0?([[:digit:]]+)/\1 hours, \2 minutes/'`
+`top -l 1 | grep "CPU usage:"`
+`top -l 1 | grep "PhysMem:"`
 EOF
 )
 #toilet -f future "`date +\"%Y-%m-%d %H:%M:%S\"`"
