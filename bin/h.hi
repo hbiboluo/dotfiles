@@ -4,6 +4,7 @@ GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
 current_dir=`pwd`
+h.welcome
 echo -e "${GREEN}====================${NC}"
 echo -e "${GREEN}1. Make sure OneDrive running${NC}"
 if [ -d /Applications/OneDrive.app ]; then

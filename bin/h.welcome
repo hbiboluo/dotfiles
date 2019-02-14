@@ -1,0 +1,20 @@
+#!/bin/bash
+info=$(cat <<EOF
+user: `whoami`
+host: `hostname`
+
+cpu: `system_profiler SPHardwareDataType | awk -F: '/Processor Name/{print $2}'`,`system_profiler SPHardwareDataType | awk -F: '/Processor Speed/{print $2}'` *`system_profiler SPHardwareDataType | awk -F: '/Number of Cores/{print $2}'`
+memory: `system_profiler SPHardwareDataType | awk -F: '/Memory/{print $2}'`
+ip: `ifconfig en0 | grep netmask | awk '{print $2}'`
+
+time: `date +"%Y-%m-%d %H:%M:%S"`
+uptime: `uptime | sed -E 's/^[^,]*up *//; s/, *[[:digit:]]* users.*//; s/min/minutes/; s/([[:digit:]]+):0?([[:digit:]]+)/\1 hours, \2 minutes/'`
+EOF
+)
+#toilet -f future "`date +\"%Y-%m-%d %H:%M:%S\"`"
+#cowsay -f elephant-in-snake "`fortune`"
+#echo "________________________________________"
+#echo "$info"
+toilet --gay -f ascii12 "welcome"
+echo "$info" | cowsay -f eyes -n
+

@@ -3,6 +3,7 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
+h.welcome
 echo -e "${GREEN}====================${NC}"
 echo -e "${GREEN}1. Sync Anki if running${NC}"
 if [ -d /Applications/Anki.app ]; then

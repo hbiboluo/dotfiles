@@ -220,12 +220,12 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '(("Source Code Pro"  ;; 推荐字体
-                               :size 18
+                               :size 16
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
                                ("Monaco"  ;; OSX兜底字体
-                               :size 18
+                               :size 16
                                :weight normal
                                :width normal
                                :powerline-scale 1.5)
