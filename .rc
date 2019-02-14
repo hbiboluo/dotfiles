@@ -1,3 +1,8 @@
+## dotfiles
+export DOTFILES_ROOT=`dirname $(ls -l ~/.rc | awk -F "->" '{print $2}')`
+export PATH="$DOTFILES_ROOT/bin:$PATH"
+
+
 ## 系统默认
 # lang
 export LANG=en_US.UTF-8
