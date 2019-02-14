@@ -52,6 +52,9 @@ for repo_dir in ${repo_list[@]}; do
                     *)
                         exit 1;;
                 esac
+            else
+                git push
+                [[ $? -gt 0 ]] && echo -e "${RED}Error occured when pushing...${NC}" && exit 1
             fi
             echo "Done"
         fi
