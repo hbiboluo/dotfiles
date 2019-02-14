@@ -43,3 +43,6 @@ F() {
 # setup hfiles env
 [[ -d /opt/hfiles/bin/bin ]] && export PATH="$PATH:/opt/hfiles/bin/bin"
 [[ -d /opt/hfiles/bin/env ]] && source /opt/hfiles/bin/env/*.sh
+
+# setup homebrew
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles

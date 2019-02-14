@@ -1,0 +1,4 @@
+#!/bin/bash
+echo ""
+toilet -f pagga -F border --gay -W Hello World!
+echo ""
