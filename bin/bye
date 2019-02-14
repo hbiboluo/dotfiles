@@ -1,0 +1,56 @@
+#!/bin/bash
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+echo -e "${GREEN}====================${NC}"
+echo -e "${GREEN}1. Sync Anki if running${NC}"
+if [ -d /Applications/Anki.app ]; then
+    anki_running=`ps -ef | grep /Applications/Anki.app/Contents/MacOS/Anki | grep -v grep | wc -l`
+    anki_connect_port=8765
+    if [ $anki_running -gt 0 ]; then
+        lsof -i :$anki_connect_port >/dev/null &>/dev/null
+        if [ $? -eq 0 ]; then
+            echo "Syncing Anki..."
+            curl localhost:$anki_connect_port -X POST -d '{"action": "sync", "version": 6}'
+            echo ""
+        else
+            echo -e "${RED}AnkiConnect add-on isn't running. Please install it: https://foosoft.net/projects/anki-connect/${NC}"
+        fi
+    fi
+fi
+
+echo -e "${GREEN}====================${NC}"
+echo -e "${GREEN}2. Sync Git Repo${NC}"
+repo_list=(/opt/hfiles /opt/hlibs /opt/km $DOTFILES_ROOT)
+for repo_dir in ${repo_list[@]}; do
+    if [ -d $repo_dir ]; then
+        echo "Syncing $repo_dir..."
+        cd $repo_dir && git pull
+        if [ $? -gt 0 ]; then
+            echo -e "${RED} Fetch Error Occur...${NC}"
+        else
+            # Check modify and new files, except .local_git_ignore
+            [[ ! -f .local_git_ignore ]] && touch .local_git_ignore
+            todo_files=`cat <(git ls-files -m -o -d) <(cat .local_git_ignore) | sort | uniq -u`
+            if [ `echo $todo_files | grep -v ^$ | wc -l` -gt 0 ]; then
+                echo -e "${RED}These files will be commit automatically:${NC}"
+                echo $todo_files
+                echo ""
+                read -n1 -p "Do you want to continue [Y/N/I]?" answer
+                case $answer in
+                    y|Y)
+                        git add $(echo $todo_files | tr "\n" " ") && git commit -m "Auto commit by `hostname` at `date +%Y-%m-%d`";;
+                    i|I)
+                        echo "Ignore...";;
+                    *)
+                        exit 1;;
+                esac
+            fi
+            echo "Done"
+        fi
+    fi
+done
+
+cd $current_dir
+ 
