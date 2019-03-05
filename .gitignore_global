@@ -38,3 +38,6 @@ npm-debug.log*
 .#*
 
 .tern-port
+
+### Java ###
+.factorypath
