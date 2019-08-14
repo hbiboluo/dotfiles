@@ -10,3 +10,6 @@ alias cfzf='cat $(fzf)'
 alias v=vim
 alias emacs="emacs -nw"
 alias e=emacs
+
+# mvn
+alias mvn2="mvn -Dmaven.test.skip=true"
