@@ -9,25 +9,25 @@ export LANG=en_US.UTF-8
 
 ## 第三方工具
 # pyenv 加载
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:/usr/local/bin:$PATH"
-eval "$(pyenv init -)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:/usr/local/bin:$PATH"
+# eval "$(pyenv init -)"
 
 # fzf 配置
 [[ -f ~/.fzf.zsh ]] && [[ $SHELL =~ ".*zsh" ]] && source ~/.fzf.zsh
 [[ -f ~/.fzf.bash ]] && [[ $SHELL =~ ".*bash" ]] && source ~/.fzf.bash
 
 # thefuck 配置
-F() {
-  TF_PYTHONIOENCODING=$PYTHONIOENCODING;
-  export TF_ALIAS=F;
-  export TF_HISTORY="$(fc -ln -10)";
-  export PYTHONIOENCODING=utf-8;
-  TF_CMD=$(thefuck THEFUCK_ARGUMENT_PLACEHOLDER $@) && eval $TF_CMD;
-  unset TF_HISTORY;
-  export PYTHONIOENCODING=$TF_PYTHONIOENCODING;
-  test -n "$TF_CMD" && print -s $TF_CMD
-}
+# F() {
+#   TF_PYTHONIOENCODING=$PYTHONIOENCODING;
+#   export TF_ALIAS=F;
+#   export TF_HISTORY="$(fc -ln -10)";
+#   export PYTHONIOENCODING=utf-8;
+#   TF_CMD=$(thefuck THEFUCK_ARGUMENT_PLACEHOLDER $@) && eval $TF_CMD;
+#   unset TF_HISTORY;
+#   export PYTHONIOENCODING=$TF_PYTHONIOENCODING;
+#   test -n "$TF_CMD" && print -s $TF_CMD
+# }
 
 ## 本机配置
 # 约定：使用_local格式为名的只在本机所有，不添加到git库中
