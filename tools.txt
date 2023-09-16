@@ -6,4 +6,4 @@ os:osx:readline xz
 git tmux vim zsh ack tig mosh cloc htop the_silver_searcher axel curl ncdu
 os:centos:java-1.8.0-openjdk ShellCheck 
 os:osx:shellcheck ffmpeg toilet figlet cowsay sl myclie
-os:ubuntu:shellcheck cowsay toilet
+os:ubuntu:shellcheck cowsay toilet net-tools
