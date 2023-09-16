@@ -157,6 +157,8 @@ main() {
 # Shadowsocks user-rules
 [[ -d ~/.ShadowsocksX-NG ]] && link_file "$(pwd)/user-rule.txt" "$HOME/.ShadowsocksX-NG/user-rule.txt"
 
+[[ -d ~/.ssh/ ]] && link_file "$(pwd)/ssh-config" "$HOME/.ssh/config"
+
 # vim 插件使用vundle进行管理，需要预先初始化
 if [[ ! -d ~/.vim/bundle/Vundle.vim ]]; then
     print_info "install Vundle.vim..."
