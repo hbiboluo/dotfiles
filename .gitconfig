@@ -28,6 +28,7 @@
 	# 如果ignorecase为true，macos下会有问题
 	ignorecase = false
 	filemode = false
+	autocrlf = true
 [diff]
 	tool = vimdiff
 [merge]
