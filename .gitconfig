@@ -27,6 +27,7 @@
 	quotepath = false
 	# 如果ignorecase为true，macos下会有问题
 	ignorecase = false
+	filemode = false
 [diff]
 	tool = vimdiff
 [merge]
@@ -61,3 +62,5 @@
 	options = --highlight --line-numbers
 [gui]
 	recentrepo = /Users/hqingyi/Ent/Code/app/mob-gaokao
+[safe]
+	directory = *
