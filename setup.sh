@@ -152,7 +152,7 @@ main() {
 [[ -d ~/.ssh/ ]] && link_file "$(pwd)/ssh-config" "$HOME/.ssh/config"
 
 # oh-my-zsh
-[[ ! -d ~/.oh-my-zsh ]] && print_info "install oh-my-zsh..." && git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+[[ ! -d ~/.oh-my-zsh ]] && print_info "install oh-my-zsh..." && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # tmux配置
 if [[ ! -d ~/.tmux/plugins ]]; then 
