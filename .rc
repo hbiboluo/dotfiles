@@ -2,32 +2,11 @@
 export DOTFILES_ROOT=`dirname $(ls -l ~/.rc | awk -F "->" '{print $2}')`
 export PATH="$DOTFILES_ROOT/bin:$PATH"
 
-
 ## 系统默认
 # lang
 export LANG=en_US.UTF-8
 
 ## 第三方工具
-# pyenv 加载
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/bin:/usr/local/bin:$PATH"
-# eval "$(pyenv init -)"
-
-# fzf 配置
-[[ -f ~/.fzf.zsh ]] && [[ $SHELL =~ ".*zsh" ]] && source ~/.fzf.zsh
-[[ -f ~/.fzf.bash ]] && [[ $SHELL =~ ".*bash" ]] && source ~/.fzf.bash
-
-# thefuck 配置
-# F() {
-#   TF_PYTHONIOENCODING=$PYTHONIOENCODING;
-#   export TF_ALIAS=F;
-#   export TF_HISTORY="$(fc -ln -10)";
-#   export PYTHONIOENCODING=utf-8;
-#   TF_CMD=$(thefuck THEFUCK_ARGUMENT_PLACEHOLDER $@) && eval $TF_CMD;
-#   unset TF_HISTORY;
-#   export PYTHONIOENCODING=$TF_PYTHONIOENCODING;
-#   test -n "$TF_CMD" && print -s $TF_CMD
-# }
 
 ## 本机配置
 # 约定：使用_local格式为名的只在本机所有，不添加到git库中
@@ -40,14 +19,6 @@ export LANG=en_US.UTF-8
 
 [[ ! -e ~/.aliases-local ]] && touch ~/.aliases-local
 [[ -f ~/.aliases ]] && source ~/.aliases-local
-
-
-# load my scipts
-[[ -d ~/.hscript ]] && source ~/.hscript/*.sh
-
-# setup hfiles env
-[[ -d /opt/hfiles/bin/bin ]] && export PATH="$PATH:/opt/hfiles/bin/bin"
-[[ -d /opt/hfiles/bin/env ]] && source /opt/hfiles/bin/env/*.sh
 
 # setup homebrew
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles

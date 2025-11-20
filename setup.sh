@@ -134,8 +134,7 @@ link_file(){
 #
 # finds all .dotfiles in this folder
 declare -a FILES_TO_SYMLINK=$(find . -type f -maxdepth 1 -name ".*" -not -name .DS_Store -not -name .git -not -name .gitignore | sed -e 's|//|/|' | sed -e 's|./.|.|')
-FILES_TO_SYMLINK="$FILES_TO_SYMLINK .zsh-custom .pip .spacemacs.d .hscript" # add in vim and the binaries
-declare -a FILES_TO_SYMLINK_BIN=$(find ./bin -type f -not -name .DS_Store -not -name .git -not -name .gitignore | sed -e 's/.\/bin\///')
+FILES_TO_SYMLINK="$FILES_TO_SYMLINK .zsh-custom .pip " # add in vim and the binaries
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 main() {
@@ -147,52 +146,13 @@ main() {
         targetFile="$HOME/$(printf "%s" "$i" | sed "s/.*\/\(.*\)/\1/g")"
         link_file "$sourceFile" "$targetFile"
     done
-    for i in ${FILES_TO_SYMLINK_BIN[@]}; do
-        sourceFile="$(pwd)/bin/$i"
-        targetFile="/usr/local/bin/$(printf "%s" "$i" | sed "s/.*\/\(.*\)/\1/g")"
-        execute "sudo ln -sf $sourceFile $targetFile" "$targetFile → $sourceFile"
-    done
 }
 
-# Shadowsocks user-rules
-[[ -d ~/.ShadowsocksX-NG ]] && link_file "$(pwd)/user-rule.txt" "$HOME/.ShadowsocksX-NG/user-rule.txt"
-
+# ssh
 [[ -d ~/.ssh/ ]] && link_file "$(pwd)/ssh-config" "$HOME/.ssh/config"
-
-# vim 插件使用vundle进行管理，需要预先初始化
-if [[ ! -d ~/.vim/bundle/Vundle.vim ]]; then
-    print_info "install Vundle.vim..."
-    mkdir -p ~/.vim/bundle
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-fi
 
 # oh-my-zsh
 [[ ! -d ~/.oh-my-zsh ]] && print_info "install oh-my-zsh..." && git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-
-# spacemacs
-# if [[ ! -d ~/.emacs.d ]]; then
-#     print_info "install spacemacs..."
-#     git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-# elif [[ ! -d ~/.emacs.d/.git || `cd ~/.emacs.d/ && git remote -v | grep syl20bnr/spacemacs | wc -l` -eq "0" ]]; then
-#     ask_for_confirmation ".emacs.d already exists, do you want to overwrite it with syl20bnr/spacemacs?"
-#     if answer_is_yes; then
-#         rm -rf ~/.emacs.d
-#         git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-#     else
-#         print_error "spacemacs is not installed correctly."
-#     fi
-# fi
-# if [[ -f ~/.spacemacs ]]; then
-#     ask_for_confirmation "~/.spacemacs already exists, do you want to remove it? (We used the .spacemacs.d directory within this repo.)"
-#     if answer_is_yes; then
-#         rm ~/.spacemacs && print_success "~/.spacemacs is removed."
-#     else
-#         print_error "~/.spacemacs is exists, the ~/.spacemacs.d will not be loaded."
-#     fi
-# fi
-
-# pyenv
-# [[ ! -d ~/.pyenv ]] && print_info "install pyenv..." && git clone https://github.com/yyuu/pyenv.git ~/.pyenv
 
 # tmux配置
 if [[ ! -d ~/.tmux/plugins ]]; then 
